@@ -681,3 +681,12 @@ procdump(void)
     printf("\n");
   }
 }
+
+// CODE
+void ps(){
+	struct proc *p;
+	printf("PID\t\tNAME\n");
+	for(p = proc; p < &proc[NPROC]; p++)
+		if(p->state == RUNNING)
+			printf("%d\t\t%s\n", p->pid, p->name);
+}

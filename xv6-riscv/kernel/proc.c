@@ -4,6 +4,7 @@
 #include "riscv.h"
 #include "spinlock.h"
 #include "proc.h"
+//#include "syscall.h"
 #include "defs.h"
 
 struct cpu cpus[NCPU];
@@ -683,10 +684,11 @@ procdump(void)
 }
 
 // CODE
-void ps(){
+uint64 sys_ps(void){
 	struct proc *p;
 	printf("PID\t\tNAME\n");
 	for(p = proc; p < &proc[NPROC]; p++)
 		if(p->state == RUNNING)
 			printf("%d\t\t%s\n", p->pid, p->name);
+	return 0;
 }
